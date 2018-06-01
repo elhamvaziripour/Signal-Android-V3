@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.BYUSecureSMS.messaging.ConversationItem
+<org.thoughtcrime.securesms.ConversationItem
         android:id="@+id/conversation_item"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -13,16 +13,6 @@
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView android:id="@+id/group_message_status"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginLeft="15dp"
-              android:layout_marginTop="5dp"
-              android:fontFamily="sans-serif-light"
-              android:textSize="13sp"
-              android:textColor="?attr/conversation_group_member_name"
-              android:visibility="gone" />
-
     <RelativeLayout android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
@@ -30,7 +20,7 @@
                     android:layout_marginBottom="6dp"
                     android:layout_marginRight="0dp">
 
-        <org.BYUSecureSMS.messaging.components.AvatarImageView
+        <org.thoughtcrime.securesms.components.AvatarImageView
             android:id="@+id/contact_photo"
             android:foreground="@drawable/contact_photo_background"
             android:layout_width="40dp"
@@ -49,11 +39,63 @@
                       android:orientation="vertical"
                       tools:backgroundTint="@color/blue_900">
 
+            <LinearLayout android:id="@+id/group_sender_holder"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:visibility="gone"
+                          android:paddingRight="4dp"
+                          android:paddingLeft="4dp"
+                          android:layout_marginBottom="10dp"
+                          tools:visibility="visible">
+
+                <TextView android:id="@+id/group_message_sender"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:paddingRight="4sp"
+                          android:paddingEnd="4sp"
+                          android:textSize="13sp"
+                          android:textColor="?conversation_item_received_text_primary_color"
+                          android:maxLines="1"
+                          android:ellipsize="end"
+                          tools:visibility="visible"
+                          tools:text="+14152222222"/>
+
+                <TextView android:id="@+id/group_message_sender_profile"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:paddingRight="4sp"
+                          android:paddingLeft="4sp"
+                          android:fontFamily="sans-serif-light"
+                          android:textColor="?conversation_item_received_text_secondary_color"
+                          android:textSize="13sp"
+                          android:maxLines="1"
+                          android:ellipsize="end"
+                          tools:text="~Clement Duval"/>
+
+            </LinearLayout>
+
+            <org.thoughtcrime.securesms.components.QuoteView
+                    android:id="@+id/quote_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:visibility="gone"
+                    app:message_type="incoming"
+                    tools:visibility="visible"/>
+
+            <ViewStub
+                    android:id="@+id/shared_contact_view_stub"
+                    android:layout="@layout/conversation_item_shared_contact"
+                    android:layout_width="@dimen/media_bubble_max_width"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+
             <ViewStub
                     android:id="@+id/image_view_stub"
                     android:layout="@layout/conversation_item_received_thumbnail"
-                    android:layout_width="@dimen/media_bubble_height"
-                    android:layout_height="@dimen/media_bubble_height"/>
+                    android:layout_width="@dimen/media_bubble_default_dimens"
+                    android:layout_height="@dimen/media_bubble_default_dimens"/>
 
             <ViewStub
                     android:id="@+id/audio_view_stub"
@@ -66,7 +108,7 @@
                       android:layout_width="210dp"
                       android:layout_height="wrap_content"/>
 
-            <org.BYUSecureSMS.messaging.components.emoji.EmojiTextView
+            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                     android:id="@+id/conversation_item_body"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -76,7 +118,8 @@
                     android:textColor="?conversation_item_received_text_primary_color"
                     android:textColorLink="?conversation_item_received_text_primary_color"
                     android:textSize="@dimen/conversation_item_body_text_size"
-                    app:scaleEmojis="true" />
+                    app:scaleEmojis="true"
+                    tools:text="boop"/>
 
             <LinearLayout android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
@@ -86,20 +129,21 @@
                           android:orientation="horizontal"
                           android:gravity="left">
 
-                <ImageView android:id="@+id/secure_indicator"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
+                <ImageView android:id="@+id/insecure_indicator"
+                           android:layout_width="12dp"
+                           android:layout_height="11dp"
                            android:layout_gravity="center_vertical"
-                           android:paddingRight="2dp"
-                           android:paddingEnd="4dp"
-                           android:src="?menu_lock_icon_small"
+                           android:layout_marginRight="3dp"
+                           android:layout_marginEnd="3dp"
+                           android:src="@drawable/ic_unlocked_white_18dp"
                            android:contentDescription="@string/conversation_item__secure_message_description"
                            android:visibility="gone"
+                           android:alpha=".65"
                            android:tint="?conversation_item_received_text_secondary_color"
                            android:tintMode="multiply"
                            tools:visibility="visible"/>
 
-                <org.BYUSecureSMS.messaging.components.ExpirationTimerView
+                <org.thoughtcrime.securesms.components.ExpirationTimerView
                         android:id="@+id/expiration_indicator"
                         app:empty="@drawable/ic_hourglass_empty_white_18dp"
                         app:full="@drawable/ic_hourglass_full_white_18dp"
@@ -108,12 +152,14 @@
                         app:offset="0"
                         android:layout_gravity="center_vertical|end"
                         android:alpha=".65"
-                        android:layout_width="10dp"
+                        android:layout_width="8dp"
                         android:layout_height="11dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginEnd="3dp"
                         android:visibility="gone"
                         tools:visibility="visible"/>
 
-                <org.BYUSecureSMS.messaging.components.DeliveryStatusView
+                <org.thoughtcrime.securesms.components.DeliveryStatusView
                         android:id="@+id/delivery_status"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -152,7 +198,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <org.BYUSecureSMS.messaging.components.AlertView
+        <org.thoughtcrime.securesms.components.AlertView
                 android:id="@+id/indicators_parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -178,4 +224,4 @@
                   android:visibility="gone" />
 
     </RelativeLayout>
-</org.BYUSecureSMS.messaging.ConversationItem>
+</org.thoughtcrime.securesms.ConversationItem>

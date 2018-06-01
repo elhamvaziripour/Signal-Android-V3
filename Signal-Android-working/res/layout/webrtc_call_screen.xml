@@ -21,7 +21,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent">
 
-    <org.BYUSecureSMS.messaging.components.webrtc.PercentFrameLayout
+    <org.thoughtcrime.securesms.components.webrtc.PercentFrameLayout
             android:id="@+id/remote_render_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -43,11 +43,10 @@
             <ImageView android:id="@+id/photo"
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
-                       android:background="@android:color/black"
                        android:scaleType="centerCrop"
                        android:visibility="visible"
                        android:clickable="true"
-                       tools:src="@drawable/ic_contact_picture_large"
+                       tools:src="@drawable/ic_person_large"
                     />
 
             <LinearLayout android:id="@+id/untrusted_layout"
@@ -75,13 +74,13 @@
                         android:layout_height="wrap_content">
 
                     <Button android:id="@+id/accept_safety_numbers"
-                            android:text="Accept"
+                            android:text="@string/WebRtcCallScreen_accept"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="10dp"/>
 
                     <Button android:id="@+id/cancel_safety_numbers"
-                            android:text="Cancel"
+                            android:text="@android:string/cancel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
 
@@ -171,7 +170,7 @@
 
             </RelativeLayout>
 
-            <org.BYUSecureSMS.messaging.components.webrtc.WebRtcCallControls
+            <org.thoughtcrime.securesms.components.webrtc.WebRtcCallControls
                     android:id="@+id/inCallControls"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -185,7 +184,7 @@
             <TextView android:id="@+id/callStateLabel"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:gravity="center"
+                      android:gravity="right"
                       android:paddingTop="8dp"
                       android:paddingBottom="8dp"
                       android:paddingRight="24dp"
@@ -196,72 +195,72 @@
                       tools:text="connected"
                     />
 
-            <TextView
-                android:id ="@+id/Title"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="15dp"
+            <!--Elham edits-->
+        <TextView
+            android:id ="@+id/Title"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="15dp"
 
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp"
-                android:paddingTop="18dp"
-                android:layout_gravity="center"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:paddingTop="18dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id ="@+id/fingerprint_instruction"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:paddingTop="16dp"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id ="@+id/fingerprint"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:paddingTop="16dp"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="20dp">
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/verified_switch_call"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-               />
-            <TextView
-                android:id ="@+id/fingerprint_instruction"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
+                android:paddingBottom="26dp"
                 android:paddingTop="16dp"
-                android:gravity="center"
-                android:textSize="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-               />
+                android:paddingLeft="25dp"
+                android:layout_gravity="center"
+
+                />
 
             <TextView
-                android:id ="@+id/fingerprint"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:paddingTop="16dp"
-                android:gravity="center"
-                android:textSize="20dp"
-                android:layout_gravity="center"
+                android:layout_marginLeft="3dp"
+                android:textSize="17dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <LinearLayout android:orientation="horizontal"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="20dp">
 
-                <android.support.v7.widget.SwitchCompat
-                    android:id="@+id/verified_switch_call"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                     android:paddingBottom="26dp"
-                    android:paddingTop="16dp"
-                    android:paddingLeft="25dp"
-                    android:layout_gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="26dp"
+                android:paddingTop="14dp"
+                android:text="@string/verify_display_fragment__verified"/>
 
-                    />
-
-                <TextView
-                    android:layout_marginLeft="3dp"
-                    android:textSize="17dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:layout_gravity="center_horizontal"
-                    android:paddingBottom="26dp"
-                    android:paddingTop="14dp"
-                    android:text="@string/verify_display_fragment__verified"/>
-
-
-            </LinearLayout>
+        </LinearLayout>
         </LinearLayout>  <!-- End of call_banner for call_info #1. -->
 
         <!-- The "call state label": In some states, this shows a special
@@ -273,7 +272,7 @@
 
     </RelativeLayout>
 
-    <org.BYUSecureSMS.messaging.components.webrtc.PercentFrameLayout
+    <org.thoughtcrime.securesms.components.webrtc.PercentFrameLayout
             android:id="@+id/local_render_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -284,18 +283,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
-            android:layout_gravity="bottom"
+            android:layout_gravity="bottom|center_horizontal"
             android:src="@drawable/ic_call_end_white_48dp"
             android:focusable="true"
             app:backgroundTint="@color/red_500"
             android:visibility="visible"
-            android:contentDescription="End call"
+            android:contentDescription="@string/WebRtcCallScreen_end_call"
             tools:visibility="visible"/>
 
-    <org.BYUSecureSMS.messaging.components.webrtc.WebRtcIncomingCallOverlay
-        android:id="@+id/callControls"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible" />
+
+    <org.thoughtcrime.securesms.components.webrtc.WebRtcAnswerDeclineButton
+            android:id="@+id/answer_decline_button"
+            android:layout_gravity="bottom|center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -2,8 +2,8 @@
 #include <jni.h>
 /* Header for class org_thoughtcrime_securesms_util_FileUtils */
 
-#ifndef _Included_org_BYUSecureSMS_messaging_util_FileUtils
-#define _Included_org_BYUSecureSMS_messaging_util_FileUtils
+#ifndef _Included_org_thoughtcrime_securesms_util_FileUtils
+#define _Included_org_thoughtcrime_securesms_util_FileUtils
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -12,7 +12,7 @@ extern "C" {
  * Method:    getFileDescriptorOwner
  * Signature: (Ljava/io/FileDescriptor;)I
  */
-JNIEXPORT jint JNICALL Java_org_BYUSecureSMS_messaging_util_FileUtils_getFileDescriptorOwner
+JNIEXPORT jint JNICALL Java_org_thoughtcrime_securesms_util_FileUtils_getFileDescriptorOwner
   (JNIEnv *, jclass, jobject);
 
 #ifdef __cplusplus
